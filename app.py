@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline
 
-# Initialize Flask app and sentiment analysis model
 app = Flask(__name__)
 sentiment_model = pipeline("sentiment-analysis")
 
@@ -14,7 +13,6 @@ def analyze_sentiment():
         if not text:
             return jsonify({"error": "No text provided"}), 400
         
-        # Perform sentiment analysis
         result = sentiment_model(text)
         return jsonify(result), 200
 
@@ -22,4 +20,4 @@ def analyze_sentiment():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080)  # OpenShift uses port 8080
+    app.run(host="0.0.0.0", port=8080)  
